@@ -90,6 +90,27 @@ The eyetrackQA function only has 2 required inputs: fName and dataDir. fName is 
 
 - eyetrackQA( fName, dataDir, 'SACCADE_THRESH', ____ ): The threshold used to count saccades in dva. Saccades will be counted   using the countSaccade function anytime the subject's eye position crosses this threshold. The default is 2 dva.
 
+##### Experiment Parameters
+
+Below are a list of experiment setups for which the screen dimensions and distances have already been measured by AR and MN in 2019.
+
+- Eyetracking Room 454: This room is used for behavioral experiments outside of the scanner, such as the Recognition Memory experiment.
+	+ Experiment Screenshot - A screenshot of the meridian mapping portion of the Recognition Memory experiment can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RecMemFixationAndBar.png
+	+ Pixel Screen Dimensions (Recognition Memory) - [1024 768]
+	+ Milimeter Screen Dimensions (Recognition Memory) - [385.28 288.96]
+	+ Screen Distance (milimeters) - 540
+
+- Scanner Bore Monitor: This is the television screen behind the scanner. It is used in most experiments in the lab.
+	+ Experiment Screenshot - A screenshot of a retinotopy experiment with a checkered bar can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RecMemFixationAndBar.png
+	+ Pixel Screen Dimensions (Retinotopy) - [1920 1080]
+	+ Milimeter Screen Dimensions (Retinotopy) - [1040 585]
+	+ Screen Distance (milimeters) - 2620
+
+- Projector Screen: This is the screen that is attached to the back of the 16 channel coil for experiments such as toonotopy
+	+ Experiment Screenshot - A screenshot from the toonotopy experiment is in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/ToonFixationAndBar.png
+	+ Pixel Screen Dimensions (Toonotopy) - [1280 960]
+	+ Milimeter Screen Dimensions (Toonotopy) - [360 270]
+	+ Screen Distance (milimeters) - 300
 
 ## Example Data
 
