@@ -15,7 +15,7 @@ The code in this repo can be used when working with Eyelink eyetracking cameras 
     1. [The eyetrackQA function](#the-eyetrackQA-function)
         - [Outputs](#outputs)
         - [Inputs](#inputs)
-		+ [Experiment Parameters](#experiment-parameters)
+	- [Experiment Parameters](#experiment-parameters)
     2. [Example Data](#example-data)
     3. [Wrapper Functions](#wrapper-functions)
     
@@ -91,7 +91,7 @@ The eyetrackQA function only has 2 required inputs: fName and dataDir. fName is 
 
 - eyetrackQA( fName, dataDir, 'SACCADE_THRESH', ____ ): The threshold used to count saccades in dva. Saccades will be counted   using the countSaccade function anytime the subject's eye position crosses this threshold. The default is 2 dva.
 
-##### Experiment Parameters
+#### Experiment Parameters
 
 Below are a list of experiment setups for which the screen dimensions and distances have already been measured by AR and MN in 2019.
 
