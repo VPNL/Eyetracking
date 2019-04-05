@@ -15,6 +15,7 @@ The code in this repo can be used when working with Eyelink eyetracking cameras 
     1. [The eyetrackQA function](#the-eyetrackQA-function)
         - [Outputs](#outputs)
         - [Inputs](#inputs)
+		+ [Experiment Parameters](#experiment-parameters)
     2. [Example Data](#example-data)
     3. [Wrapper Functions](#wrapper-functions)
     
