@@ -1,9 +1,8 @@
-function finalData = dvaConvert( data, pxlScrnDim, mmScrnDim, ...
-                                             scrnDstnce )
+function finalData = dvaConvert( data, pxlScrnDim, mmScrnDim, scrnDstnce )
 % dvaConvert converts eyetracker data from pixel units to degrees of visual
 % angle (dva)
 %
-%   finalData = dvaConvert( data, [pxlScrnDim], [mmScrnDim], [scnDstnce] )
+%   finalData = dvaConvert( data, pxlScrnDim, mmScrnDim, scnDstnce )
 %
 %       data - 4 dimensional data matrix of doubles. data(:,1) gives time, 
 %              data(:,2) gives x coodinate, data(:,3) gives y coordinate, and
@@ -11,19 +10,14 @@ function finalData = dvaConvert( data, pxlScrnDim, mmScrnDim, ...
 %              the center of the screen. Positions are in degrees of visual 
 %              angle (dva)
 %
-%       pxlScrnDim - (optional) vector of length 2 containing the x and y
-%                    screen dimensions in pixels. Defaults to the screen
-%                    dimensions for the Recognition Memory experiment [1024
-%                    768].
+%       pxlScrnDim - vector of length 2 containing the x and y
+%                    screen dimensions in pixels.
 %
-%       mmScrnDim - (optional) vector of length 2 containing the x and y
-%                   screen dimensions in milimeters. Defaults to the screen
-%                   dimensions for the Recognition Memory experiment
-%                   [385.28 288.96]
+%       mmScrnDim - vector of length 2 containing the x and y
+%                   screen dimensions in milimeters.
 %
-%       scnDstnce - (optional) scalar. Distance from eye to screen in
-%                   milimeters. Defaults to screen distance for Recognition
-%                   Memory experiment (540 mm)
+%       scnDstnce - Scalar distance from eye to screen in
+%                   milimeters.
 %
 %       finalData - Data matrix of doubles with the same shape as raw.
 %                   Contains data in units of degree of visual angle.
@@ -31,19 +25,7 @@ function finalData = dvaConvert( data, pxlScrnDim, mmScrnDim, ...
 % AR Jan 2019
 % AR Feb 2019 updated default parameters to match the RecMem code,
 %             corrected dva conversion (was off by a factor of 2)
-
-%% Check inputs and set defaults
-if ~exist('scrnDstnce') | isempty(scrnDstnce)
-    scrnDstnce = 540;
-end
-
-if ~exist('mmScrnDim') | isempty(mmScrnDim)
-    mmScrnDim = [385.28 288.96];
-end
-
-if ~exist('pxlScrnDim') | isempty(pxlScrnDim)
-    pxlScrnDim = [1024 768];
-end
+% AR Apr 2019 made all inputs required
 
 %% Unit Convertion on Data
 

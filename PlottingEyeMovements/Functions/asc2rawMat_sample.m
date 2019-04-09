@@ -5,24 +5,19 @@ function [raw, stime] = asc2rawMat_sample( ascFile, pxlScrnDim, mmScrnDim, ...
 % kgs/projects/Longitudinal/Behavioral/Eyetracking/Code/asc2mat. This raw
 % data contains only position data, not event data.
 %
-%   [raw, stime] = asc2rawMat_sample( ascFile, [pxlScrnDim], [mmScrnDim], ...
-%                                     [scrnDstnce] )
+%   [raw, stime] = asc2rawMat_sample( ascFile, pxlScrnDim, mmScrnDim, ...
+%                                     scrnDstnce )
 %
 %       ascFile - (string) filepath to asc file containing sample data
 %
-%       pxlScrnDim - (optional) vector of length 2 containing the x and y
-%                    screen dimensions in pixels. Defaults to the screen
-%                    dimensions for the Recognition Memory experiment [1024
-%                    768].
+%       pxlScrnDim - vector of length 2 containing the x and y
+%                    screen dimensions in pixels.
 %
-%       mmScrnDim - (optional) vector of length 2 containing the x and y
-%                   screen dimensions in milimeters. Defaults to the screen
-%                   dimensions for the Recognition Memory experiment
-%                   [385.28 288.96]
+%       mmScrnDim - vector of length 2 containing the x and y
+%                   screen dimensions in milimeters.
 %
-%       scnDstnce - (optional) scalar. Distance from eye to screen in
-%                   milimeters. Defaults to screen distance for Recognition
-%                   Memory experiment (540 mm)
+%       scnDstnce - Scalar distance from eye to screen in
+%                   milimeters.
 %
 %       raw - 4 dimensional data matrix of doubles. raw(:,1) gives time, 
 %             raw(:,2) gives x coodinate, raw(:,3) gives y coordinate, and
@@ -37,19 +32,7 @@ function [raw, stime] = asc2rawMat_sample( ascFile, pxlScrnDim, mmScrnDim, ...
 %             raw, centerdata at median, convert raw data to dva, 
 %             calculated distance from center for all time points and saved
 %             under raw(:,4)
-
-%% Check inputs
-if ~exist('scrnDstnce') | isempty(scrnDstnce)
-    scrnDstnce = 540;
-end
-
-if ~exist('mmScrnDim') | isempty(mmScrnDim)
-    mmScrnDim = [385.28 288.96];
-end
-
-if ~exist('pxlScrnDim') | isempty(pxlScrnDim)
-    pxlScrnDim = [1024 768];
-end
+% AR Apr 2019 made all inputs required
 
 %% Read asc file
 % Open asc file

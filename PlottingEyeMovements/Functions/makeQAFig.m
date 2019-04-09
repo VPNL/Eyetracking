@@ -3,8 +3,8 @@ function fig = makeQAFig( data, figName, screenshot, mmScrnDim, ...
 % makeQAFig plots processed eyetracking data. The plot will have a color map
 % showing how the eye position changes over time.
 %
-%   fig = makeQAFig( data, figName, [screenshot], [mmScrnDim], [scnDstnce],
-%                    [DIST_THRESH] )
+%   fig = makeQAFig( data, figName, screenshot, mmScrnDim, scnDstnce,
+%                    DIST_THRESH )
 %
 %       data - 4 dimensional data matrix of doubles. data(:,1) gives time, 
 %              data(:,2) gives x coodinate, data(:,3) gives y coordinate, and
@@ -15,19 +15,16 @@ function fig = makeQAFig( data, figName, screenshot, mmScrnDim, ...
 %       figName - string or cell array defining how you want to title your 
 %                 figure
 %
-%       screenshot - (optional) path to image you want to appear behind the
-%                    plot (default is from RecMem experiment)
+%       screenshot - path to image you want to appear behind the
+%                    plot
 %
-%       mmScrnDim - (optional) vector of length 2 containing the x and y
-%                   screen dimensions in milimeters. Defaults to the screen
-%                   dimensions for the Recognition Memory experiment
-%                   [385.28 288.96]
+%       mmScrnDim - vector of length 2 containing the x and y
+%                   screen dimensions in milimeters.
 %
-%       scnDstnce - (optional) scalar. Distance from eye to screen in
-%                   milimeters. Defaults to screen distance for Recognition
-%                   Memory experiment (540 mm)
+%       scnDstnce - scalar. Distance from eye to screen in
+%                   milimeters.
 %
-%       DIST_THRESH - (optional) scalar. the threshold used to define the 
+%       DIST_THRESH - scalar. the threshold used to define the 
 %                   saccades. saccades must cross this thresholded distance
 %                   from the center of the screen in order to be counted
 %                   (if not added to argument, will not plot circle showing
@@ -44,21 +41,7 @@ function fig = makeQAFig( data, figName, screenshot, mmScrnDim, ...
 %             Added circle showing the threshold used to count the number
 %             of saccades; rounding timepoints displayed on the colormap;
 %             update location of default screenshot
-
-%% Check inputs and set defaults
-if ~exist('screenshot') | isempty(screenshot)
-    screenshot = RAID('projects','GitHub','Eyetracking',...
-                      'PlottingEyeMovements','ExperimentScreenShots',...
-                      'RecMemFixationAndBar.png');
-end
-
-if ~exist('scrnDstnce') | isempty(scrnDstnce)
-    scrnDstnce = 540;
-end
-
-if ~exist('mmScrnDim') | isempty(mmScrnDim)
-    mmScrnDim = [385.28 288.96];
-end
+% AR Apr 2019 made screenshot, scrnDstnce, and mmScrnDim required
 
 %% Plot Data
 fig = figure('visible','off');
