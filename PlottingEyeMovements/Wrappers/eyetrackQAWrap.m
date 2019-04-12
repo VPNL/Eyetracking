@@ -70,8 +70,9 @@ function eyetrackQAWrap( dataDir, varargin )
 %                   'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],...
 %                   'scrnDstnce', 2620 );
 % 
-%
 % AR Mar 2019
+% AR April 2019 Updated defaults to match parameters for the Toonotopy
+%               experiment instead of the Recognition Memory experiment
 
 %% Checking inputs
 
