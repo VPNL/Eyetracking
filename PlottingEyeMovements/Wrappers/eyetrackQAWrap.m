@@ -24,26 +24,52 @@ function eyetrackQAWrap( dataDir, varargin )
 %                           (default is true)
 %
 %       experiment_screenshot - (optional) path to image you want to appear
-%                       behind the plot (default is from RecMem experiment)
+%                       behind the plot (default is from Toonotopy)
 %
 %       pxlScrnDim - (optional) vector of length 2 containing the x and y
 %                    screen dimensions in pixels. Defaults to the screen
-%                    dimensions for the Recognition Memory experiment [1024
-%                    768].
+%                    dimensions for the Toonotopy experiment [1280 960].
 %
 %       mmScrnDim - (optional) vector of length 2 containing the x and y
 %                   screen dimensions in milimeters. Defaults to the screen
-%                   dimensions for the Recognition Memory experiment
-%                   [385.28 288.96]
+%                   dimensions for the Toonotopy experiment [360 270]
 %
 %       scrnDstnce - (optional) scalar. Distance from eye to screen in
-%                   milimeters. Defaults to screen distance for Recognition
-%                   Memory experiment (540 mm)
+%                   milimeters. Defaults to screen distance for Toonotopy
+%                   experiment (300 mm)
 %
 %       SACCADE_THRESH - (optional) scalar. the threshold used to define the 
 %                   saccades. saccades must cross this thresholded distance
 %                   from the center of the screen in order to be counted
 %                   (default is 2 dva)
+%
+% ---------------------------  Examples  ---------------------------------
+%
+% For running this script on toonotopy data, navigate to your data
+% directory and run...
+%
+%   eyetrackQAWrap( pwd );
+%
+% For running this script on data from the Recognition Memory experiment,
+% navigate to your data directory and run...
+%
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'RecMemFixationAndBar.png');
+%   eyetrackQAWrap( pwd, 'experiment_screenshot', screenshot, ...
+%                   'pxlScrnDim', [1024 768], 'mmScrnDim', [385.28 288.96],...
+%                   'scrnDstnce', 540 );
+%
+% For running this script on data from the Retinotopy experiment at the
+% scanner, navigate to your data directory and run...
+%
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'RecMemFixationAndBar.png');
+%   eyetrackQAWrap( pwd, 'experiment_screenshot', screenshot, ...
+%                   'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],...
+%                   'scrnDstnce', 2620 );
+% 
 %
 % AR Mar 2019
 
@@ -62,10 +88,10 @@ addParameter(p,'RemoveBlinksFunction',true,@islogical);
 addParameter(p,'plotRaw',true,@islogical);
 addParameter(p,'experiment_screenshot',RAID('projects','GitHub','Eyetracking',...
              'PlottingEyeMovements','ExperimentScreenShots',...
-             'RecMemFixationAndBar.png'),@ischar);
-addParameter(p,'pxlScrnDim',[1024 768],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
-addParameter(p,'mmScrnDim',[385.28 288.96],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
-addParameter(p,'scrnDstnce',540,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
+             'ToonFixationAndBar.png'),@ischar);
+addParameter(p,'pxlScrnDim',[1280 960],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
+addParameter(p,'mmScrnDim',[360 270],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
+addParameter(p,'scrnDstnce',300,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 addParameter(p,'SACCADE_THRESH',2,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 
 % Assigning variables
