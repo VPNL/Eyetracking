@@ -22,6 +22,8 @@ function eyetrackQAWrap_RecMem( year, funcRemoveBlinks, plotRaw )
 %             number of saccades, added argument funcRemoveBlinks,
 %             organized majority of function into new eyetrackQAWrap
 %             function
+% AR Apr 2019 Updated inputs to eyetrackQAWrap, as defaults are no longer
+%             for Recognition Memory experiment
 
 % Checking inputs
 if ~exist('plotRaw') | isempty(plotRaw)
@@ -36,8 +38,15 @@ end
 dataDir = RAID('projects','Longitudinal','Behavioral','RecognitionMemory',...
                'data',['Year' num2str(year)],'eyetracking','meridianMapping'); 
 
+% Storing location of screenshot
+screenshot = RAID('projects','GitHub','Eyetracking',...
+                  'PlottingEyeMovements','ExperimentScreenShots',...
+                  'RecMemFixationAndBar.png');
+           
 % Run eyetrackQA on all edfs in datadir
 eyetrackQAWrap( dataDir, 'RemoveBlinksFunction',funcRemoveBlinks, ...
-                'plotRaw', plotRaw );
+                'plotRaw', plotRaw, 'experiment_screenshot', screenshot, ...
+                'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],...
+                'scrnDstnce', 2620 );
 
 end
