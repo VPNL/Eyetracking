@@ -77,6 +77,34 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %                   from the center of the screen in order to be counted
 %                   (default is 2 dva)
 %
+% --------------------------- Examples ------------------------------------
+%
+% For running this script on data from the Recognition Memory Experiment,
+% navigate to your data directory and run...
+%
+%   fName = '2AOK07y3'; % Or whatever edf file you would like to analyze
+%   eyetrackQA( fName, pwd );
+%
+% For running this script on data from the Toonotopy Experiment, navigate
+% to your data directory and run...
+%
+%   fName = '4AOK07y3'; % Or whatever edf file you would like to analyze
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'ToonFixationAndBar.png');
+%   eyetrackQA( fName, pwd, 'experiment_screenshot', screenshot, ...
+%               'pxlScrnDim', [1280 960], 'mmScrnDim', [360 270], ...
+%               'scrnDstnce', 300 );
+%
+% For running this script on data from the Retinotopy Experiment, navigate
+% to your data directory and run...
+%
+%   fName = '4AOK07y3'; % Or whatever edf file you would like to analyze
+%   eyetrackQA( fName, pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', ...
+%               [1040 585], 'scrnDstnce', 2620 );
+%
+% -------------------------------------------------------------------------
+%
 % This script is only compatable for Macs using MATLAB versions 2016 or
 % later.
 %
