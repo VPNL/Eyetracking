@@ -119,6 +119,9 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %             arguments; automatically created required folders if they 
 %             don't already exist; getting asc event file; changed inputs
 %             to Name, Value pairs; check matlab version at start of code
+% AR Apr 2019 Function now returns if it's unable to read the asc file,
+%             which appears to happen when the edf file is corrupt or
+%             improperly formatted.
 
 %% Checking inputs and system preferences
 
@@ -214,11 +217,20 @@ unix(edf2ascCommand_events);
 clear edf2ascCommand_events edf2ascCommand_sample edfFile edfdir
 
 %% Convert asc to raw sample data (x and y coordinates) and save
-[raw, stime] = asc2rawMat_sample([ascdir '/samples/' fName '.asc'], ...
-                                 pxlScrnDim, mmScrnDim, scrnDstnce);
 % Saving raw. raw(:,1) gives time, raw(:,2) gives x position in dva, 
 % raw(:,3) gives y position in dva, and raw(:,4) gives distance from center
 % in dva.
+try
+    [raw, stime] = asc2rawMat_sample([ascdir '/samples/' fName '.asc'], ...
+                                      pxlScrnDim, mmScrnDim, scrnDstnce);
+% If we can't read the asc file, then there was something wrong with the
+% edf file and we shouldn't analyze the data
+catch
+    fprintf(['\n\n\n\nFailed to analyze ' fName ...
+             '.edf. File may be corrupt or improperly formatted.\n\n\n\n']);
+    return
+end
+                                  
 save([matdir '/raw/' fName '.mat'],'raw')
 
 % Plot raw data and save figure
