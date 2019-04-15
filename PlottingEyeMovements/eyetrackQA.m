@@ -121,7 +121,8 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %             to Name, Value pairs; check matlab version at start of code
 % AR Apr 2019 Function now returns if it's unable to read the asc file,
 %             which appears to happen when the edf file is corrupt or
-%             improperly formatted.
+%             improperly formatted. Only removing blinks from eyelink if it
+%             is not empty.
 
 %% Checking inputs and system preferences
 
@@ -254,8 +255,12 @@ clear ascdir stime
                                                                 
 %% Delete blinks using eyelink event data, save processed data, and count saccades
 % Delete blinks
-processed_ELBlinksRemoved = raw; 
-processed_ELBlinksRemoved(blinksFromEL,2:4) = NaN;
+processed_ELBlinksRemoved = raw;
+% If eyelink wasn't calibrated well, it may not find blinks. In this case,
+% we won't delete anything.
+if ~isempty(blinksFromEL) & ~isnan(blinksFromEL)
+    processed_ELBlinksRemoved(blinksFromEL,2:4) = NaN;
+end
 % Save processed data
 save([matdir '/ELBlinksRemoved/' fName '.mat'],'processed_ELBlinksRemoved')
 % Count saccades and find their locations in time
