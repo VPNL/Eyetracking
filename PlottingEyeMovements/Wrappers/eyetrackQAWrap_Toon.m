@@ -22,6 +22,8 @@ if str2num(matVersion(end-2)) < 6
     error('This function will only work on MATLAB versions 2016 or later');
 end
 
+clear matVersion
+
 %% Checking inputs
 if ~exist('plotRaw') | isempty(plotRaw)
     plotRaw = true;
@@ -42,7 +44,10 @@ edfFolders = unique({edfFiles.folder});
 
 % All of these edf files are going to be under a edffiles subfolder under
 % the dataDir
-dataDirs = cellfun(@(x) x(1:end-9), edfFolders, 'un', 0);
+dataDirs = cellfun(@(x) x(1:end-9), edfFolders, 'un', 0); 
+
+% Clear other variables
+clear edfFolders edfFiles retDir
 
 %% Run eyetrackQAWrap on all data directories found
 
