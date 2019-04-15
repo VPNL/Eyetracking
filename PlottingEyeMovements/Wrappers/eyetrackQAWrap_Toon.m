@@ -1,8 +1,8 @@
-function eyetrackQAWrap_Ret( funcRemoveBlinks, plotRaw )
-% eyetrackQAWrap_Ret will run eyetrackQA on all edffiles from the
-% Retinotopy experiment
+function eyetrackQAWrap_Toon( funcRemoveBlinks, plotRaw )
+% eyetrackQAWrap_Toon will run eyetrackQA on all edffiles from the
+% Toonotopy experiment
 %
-%   eyetrackQAWrap_Ret( [funcRemoveBlinks], [plotRaw] )
+%   eyetrackQAWrap_Toon( [funcRemoveBlinks], [plotRaw] )
 %
 %       funcRemoveBlinks: (optional) boolean denoting whether you would
 %                                    like to use the removeBlinks function
@@ -32,7 +32,7 @@ end
 
 %% Storing all data directories containing edf files
 % Storing directory where retinotopy eyetracking data is stored
-retDir = RAID('projects','Longitudinal','Behavioral','Retinotopy');
+retDir = RAID('projects','Longitudinal','Behavioral','Toonotopy');
 
 % Searching through retDir for edf files
 edfFiles = dir([retDir '/**/*.edf']);
@@ -42,8 +42,14 @@ edfFolders = unique({edfFiles.folder});
 
 % All of these edf files are going to be under a edffiles subfolder under
 % the dataDir
-dataDirs = cellfun(@(x) x(1:end-8), edfFolders, 'un', 0);
+dataDirs = cellfun(@(x) x(1:end-9), edfFolders, 'un', 0);
 
 %% Run eyetrackQAWrap on all data directories found
+
+% Looping across dataDirs
+for d = 1:length(dataDirs)
+    dataDir = dataDirs{d};
+    eyetrackQAWrap( dataDir );
+end
 
 end
