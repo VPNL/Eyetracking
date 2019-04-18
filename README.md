@@ -91,6 +91,8 @@ The eyetrackQA function only has 2 required inputs: fName and dataDir. fName is 
 
 - eyetrackQA( fName, dataDir, 'SACCADE_THRESH', ____ ): The threshold used to count saccades in dva. Saccades will be counted   using the countSaccade function anytime the subject's eye position crosses this threshold. The default is 2 dva.
 
+- eyetrackQA( fName, dataDir, 'length', ____ ): The length of your experiment in miliseconds. If no value is provided, will assume that the length of Eyelink's recording matches your experiment. If the length provided is less than the length of Eyelink's recording, extra recorded timepoints will be cropped.
+
 #### Experiment Parameters
 
 Below are a list of experiment setups for which the screen dimensions and distances have already been measured by AR and MN in 2019.
@@ -106,6 +108,7 @@ Below are a list of experiment setups for which the screen dimensions and distan
 	+ Pixel Screen Dimensions (Retinotopy) - [1920 1080]
 	+ Milimeter Screen Dimensions (Retinotopy) - [1040 585]
 	+ Screen Distance (milimeters) - 2620
+	+ Length (miliseconds) - 180000 (because it's not clear when the recording started and stopped in relation to the experiment, we crop more timepoints than needed).
 
 - Projector Screen: This is the screen that is attached to the back of the 16 channel coil for experiments such as toonotopy
 	+ Experiment Screenshot - A screenshot from the toonotopy experiment is in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/ToonFixationAndBar.png
