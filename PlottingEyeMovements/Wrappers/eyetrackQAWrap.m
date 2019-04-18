@@ -43,6 +43,12 @@ function eyetrackQAWrap( dataDir, varargin )
 %                   from the center of the screen in order to be counted
 %                   (default is 2 dva)
 %
+%       length: (optional) scalar. The length of your experiment in
+%               miliseconds. If no value is provided, will assume that the
+%               length of Eyelink's recording matches your experiment. If
+%               the length provided is less than the length of Eyelink's
+%               recording, extra recorded timepoints will be cropped.
+%
 % ---------------------------  Examples  ---------------------------------
 %
 % For running this script on toonotopy data, navigate to your data
@@ -72,7 +78,8 @@ function eyetrackQAWrap( dataDir, varargin )
 % 
 % AR Mar 2019
 % AR April 2019 Updated defaults to match parameters for the Toonotopy
-%               experiment instead of the Recognition Memory experiment
+%               experiment instead of the Recognition Memory experiment.
+%               Added length argument.
 
 %% Checking inputs
 
@@ -94,6 +101,7 @@ addParameter(p,'pxlScrnDim',[1280 960],@(x)isnumeric(x)&&(length(x)==2)&&all(x >
 addParameter(p,'mmScrnDim',[360 270],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
 addParameter(p,'scrnDstnce',300,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 addParameter(p,'SACCADE_THRESH',2,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
+addParameter(p,'length',NaN,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 
 % Assigning variables
 parse(p,varargin{:});
@@ -104,6 +112,7 @@ pxlScrnDim = p.Results.pxlScrnDim;
 mmScrnDim = p.Results.mmScrnDim;
 scrnDstnce = p.Results.scrnDstnce;
 DIST_THRESH = p.Results.SACCADE_THRESH;
+len = p.Results.length;
 
 % Check to see if there were any unmatched inputs
 if ~isempty(fieldnames(p.Unmatched))
@@ -133,7 +142,8 @@ for e = 1:length(edfFiles)
     eyetrackQA( fName, dataDir, 'RemoveBlinksFunction',funcRemoveBlinks, ...
                 'plotRaw', plotRaw, 'experiment_screenshot', screenshot, ...
                 'pxlScrnDim', pxlScrnDim, 'mmScrnDim', mmScrnDim, ...
-                'scrnDstnce', scrnDstnce, 'SACCADE_THRESH', DIST_THRESH );
+                'scrnDstnce', scrnDstnce, 'SACCADE_THRESH', DIST_THRESH, ...
+                'length', len);
 end
     
 end
