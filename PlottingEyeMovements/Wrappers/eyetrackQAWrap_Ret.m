@@ -53,7 +53,7 @@ clear edfFolders edfFiles retDir
 % Storing location of screenshot
 screenshot = RAID('projects','GitHub','Eyetracking',...
                   'PlottingEyeMovements','ExperimentScreenShots',...
-                  'RecMemFixationAndBar.png');
+                  'RetFixationAndBar.png');
 
 % Looping across dataDirs
 for d = 1:length(dataDirs)
@@ -61,7 +61,7 @@ for d = 1:length(dataDirs)
     eyetrackQAWrap( dataDir, 'RemoveBlinksFunction',funcRemoveBlinks, ...
                     'plotRaw', plotRaw, 'experiment_screenshot', screenshot, ...
                     'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],...
-                    'scrnDstnce', 2620 );
+                    'scrnDstnce', 2620, 'length', 180000 );
 end
 
 end
