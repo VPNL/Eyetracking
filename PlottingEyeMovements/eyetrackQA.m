@@ -72,10 +72,16 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %                   milimeters. Defaults to screen distance for Recognition
 %                   Memory experiment (540 mm)
 %
-%       SACCADE_THRESH - (optional) scalar. the threshold used to define the 
+%       SACCADE_THRESH - (optional) scalar. The threshold used to define the 
 %                   saccades. saccades must cross this thresholded distance
 %                   from the center of the screen in order to be counted
 %                   (default is 2 dva)
+%
+%       length: (optional) scalar. The length of your experiment in
+%               miliseconds. If no value is provided, will assume that the
+%               length of Eyelink's recording matches your experiment. If
+%               the length provided is less than the length of Eyelink's
+%               recording, extra recorded timepoints will be cropped.
 %
 % --------------------------- Examples ------------------------------------
 %
@@ -100,8 +106,12 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 % to your data directory and run...
 %
 %   fName = '4AOK07y3'; % Or whatever edf file you would like to analyze
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'RetFixationAndBar.png');
 %   eyetrackQA( fName, pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', ...
-%               [1040 585], 'scrnDstnce', 2620 );
+%               [1040 585], 'scrnDstnce', 2620, 'experiment_screenshot', ...
+%               screenshot, 'length', 180000 );
 %
 % -------------------------------------------------------------------------
 %
@@ -122,7 +132,7 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 % AR Apr 2019 Function now returns if it's unable to read the asc file,
 %             which appears to happen when the edf file is corrupt or
 %             improperly formatted. Only removing blinks from eyelink if it
-%             is not empty.
+%             is not empty. Added argument to specify length of experiment.
 
 %% Checking inputs and system preferences
 
@@ -171,6 +181,7 @@ addParameter(p,'pxlScrnDim',[1024 768],@(x)isnumeric(x)&&(length(x)==2)&&all(x >
 addParameter(p,'mmScrnDim',[385.28 288.96],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
 addParameter(p,'scrnDstnce',540,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 addParameter(p,'SACCADE_THRESH',2,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
+addParameter(p,'length',NaN,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 
 % Assigning variables
 parse(p,varargin{:});
@@ -181,6 +192,7 @@ pxlScrnDim = p.Results.pxlScrnDim;
 mmScrnDim = p.Results.mmScrnDim;
 scrnDstnce = p.Results.scrnDstnce;
 DIST_THRESH = p.Results.SACCADE_THRESH;
+len = p.Results.length;
 
 % Check to see if there were any unmatched inputs
 if ~isempty(fieldnames(p.Unmatched))
@@ -231,7 +243,14 @@ catch
              '.edf. File may be corrupt or improperly formatted.\n\n\n\n']);
     return
 end
-                                  
+
+% If user specified length of experiment, crop raw to fit length.
+if ~isnan(len) % If the user does not provide a length, it will be NaN
+    if len < size(raw,1) % Make sure that raw is longer than length
+        raw = raw(1:len,:);
+    end
+end
+
 save([matdir '/raw/' fName '.mat'],'raw')
 
 % Plot raw data and save figure
@@ -250,7 +269,7 @@ end
 % of the eyetracking calibration and validation.
 [blinksFromEL, dataQuality] = asc2mat_event( [ascdir '/events/' fName ...
                                               '.asc'], stime);
-
+                                          
 clear ascdir stime
                                                                 
 %% Delete blinks using eyelink event data, save processed data, and count saccades
@@ -259,7 +278,7 @@ processed_ELBlinksRemoved = raw;
 % If eyelink wasn't calibrated well, it may not find blinks. In this case,
 % we won't delete anything.
 if ~isempty(blinksFromEL) & ~isnan(blinksFromEL)
-    processed_ELBlinksRemoved(blinksFromEL,2:4) = NaN;
+    processed_ELBlinksRemoved(blinksFromEL < size(raw,1),2:4) = NaN;
 end
 % Save processed data
 save([matdir '/ELBlinksRemoved/' fName '.mat'],'processed_ELBlinksRemoved')

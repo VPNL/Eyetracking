@@ -102,7 +102,7 @@ Below are a list of experiment setups for which the screen dimensions and distan
 	+ Screen Distance (milimeters) - 540
 
 - Scanner Bore Monitor: This is the television screen behind the scanner. It is used in most experiments in the lab.
-	+ Experiment Screenshot - A screenshot of a retinotopy experiment with a checkered bar can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RecMemFixationAndBar.png
+	+ Experiment Screenshot - A screenshot of a retinotopy experiment with a checkered bar can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RetFixationAndBar.png
 	+ Pixel Screen Dimensions (Retinotopy) - [1920 1080]
 	+ Milimeter Screen Dimensions (Retinotopy) - [1040 585]
 	+ Screen Distance (milimeters) - 2620
