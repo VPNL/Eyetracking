@@ -246,8 +246,8 @@ end
 
 % If user specified length of experiment, crop raw to fit length.
 if ~isnan(len) % If the user does not provide a length, it will be NaN
-    if len < size(raw,1) % Make sure that raw is longer than length
-        raw = raw(1:len,:);
+    if len < raw(end,1) % Make sure that raw is longer than length
+        raw = raw((raw(:,1) < len),:);
     end
 end
 
