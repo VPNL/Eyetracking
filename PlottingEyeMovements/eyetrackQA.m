@@ -181,7 +181,7 @@ addParameter(p,'pxlScrnDim',[1024 768],@(x)isnumeric(x)&&(length(x)==2)&&all(x >
 addParameter(p,'mmScrnDim',[385.28 288.96],@(x)isnumeric(x)&&(length(x)==2)&&all(x > 0));
 addParameter(p,'scrnDstnce',540,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
 addParameter(p,'SACCADE_THRESH',2,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
-addParameter(p,'length',NaN,@(x)isnumeric(x)&&(length(x)==1)&&all(x > 0));
+addParameter(p,'length',NaN,@(x)isnumeric(x)&&(((length(x)==1)&&all(x > 0)) | isnan(x)));
 
 % Assigning variables
 parse(p,varargin{:});
