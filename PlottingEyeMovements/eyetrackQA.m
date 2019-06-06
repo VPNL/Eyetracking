@@ -113,6 +113,17 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %               [1040 585], 'scrnDstnce', 2620, 'experiment_screenshot', ...
 %               screenshot, 'length', 180000 );
 %
+% For running this script on data from the kidLoc localizer, navigate to
+% your data directory and run...
+%
+%   fName = '2AOK07y3'; % Or whatever edf file you would like to analyze
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'kidLocWord.png');
+%   eyetrackQA( fName, pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', ...
+%               [1040 585], 'scrnDstnce', 2620, 'experiment_screenshot', ...
+%               screenshot );
+%
 % -------------------------------------------------------------------------
 %
 % This script is only compatable for Macs using MATLAB versions 2016 or
@@ -133,6 +144,8 @@ function [dataQuality, numSaccades_ELBlinksRemoved, numSaccades_removeBlinksFun]
 %             which appears to happen when the edf file is corrupt or
 %             improperly formatted. Only removing blinks from eyelink if it
 %             is not empty. Added argument to specify length of experiment.
+% AR June 2019 Added information in the help message about how to use this
+%              function to analyze data from the kidLoc experiment
 
 %% Checking inputs and system preferences
 

@@ -66,20 +66,37 @@ function eyetrackQAWrap( dataDir, varargin )
 %                   'pxlScrnDim', [1024 768], 'mmScrnDim', [385.28 288.96],...
 %                   'scrnDstnce', 540 );
 %
-% For running this script on data from the Retinotopy experiment at the
+% For running this script on data from the old Retinotopy experiment at the
 % scanner, navigate to your data directory and run...
 %
 %   screenshot = RAID('projects','GitHub','Eyetracking',...
 %                     'PlottingEyeMovements','ExperimentScreenShots',...
-%                     'RecMemFixationAndBar.png');
+%                     'RetFixationAndBar.png');
 %   eyetrackQAWrap( pwd, 'experiment_screenshot', screenshot, ...
 %                   'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],...
-%                   'scrnDstnce', 2620 );
-% 
+%                   'scrnDstnce', 2620, 'length', 180000 );
+%
+% For running this script on data from the kidLoc localizer, navigate to
+% your data directory and run...
+%
+%   screenshot = RAID('projects','GitHub','Eyetracking',...
+%                     'PlottingEyeMovements','ExperimentScreenShots',...
+%                     'kidLocWord.png');
+%   eyetrackQA( pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585], 
+%               'scrnDstnce', 2620, 'experiment_screenshot', screenshot );
+%
+% -------------------------------------------------------------------------
+%
+% This script is only compatable for Macs using MATLAB versions 2016 or
+% later.
+%
 % AR Mar 2019
 % AR April 2019 Updated defaults to match parameters for the Toonotopy
 %               experiment instead of the Recognition Memory experiment.
 %               Added length argument.
+% AR June 2019  Added information into help message about using this
+%               function to analyze eyetracking data from the kidLoc and
+%               old retinotopy experiments
 
 %% Checking inputs
 
