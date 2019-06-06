@@ -104,11 +104,11 @@ Below are a list of experiment setups for which the screen dimensions and distan
 	+ Screen Distance (milimeters) - 540
 
 - Scanner Bore Monitor: This is the television screen behind the scanner. It is used in most experiments in the lab.
-	+ Experiment Screenshot - A screenshot of a retinotopy experiment with a checkered bar can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RetFixationAndBar.png
+	+ Experiment Screenshot - A screenshot of a retinotopy experiment with a checkered bar can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/RetFixationAndBar.png. A screenshot from our kidLoc localizer experiment with an image showing a pseudoword can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/kidLocWord.png. A screenshot from our kidLoc localizer experiment of the fixation point with no image can be found in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/kidLocFixation.png.
 	+ Pixel Screen Dimensions (Retinotopy) - [1920 1080]
 	+ Milimeter Screen Dimensions (Retinotopy) - [1040 585]
 	+ Screen Distance (milimeters) - 2620
-	+ Length (miliseconds) - 180000 (because it's not clear when the recording started and stopped in relation to the experiment, we crop more timepoints than needed).
+	+ Length (miliseconds, just for the retinotopy experiment) - 180000 (because it's not clear when the recording started and stopped in relation to the retinotopy experiment, we crop more timepoints than needed). You do not need this argument to analyze eyetracking data from the kidLoc experiment.
 
 - Projector Screen: This is the screen that is attached to the back of the 16 channel coil for experiments such as toonotopy
 	+ Experiment Screenshot - A screenshot from the toonotopy experiment is in this repo under Eyetracking/PlottingEyeMovements/ExperimentScreenShots/ToonFixationAndBar.png
