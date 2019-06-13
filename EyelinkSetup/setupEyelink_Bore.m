@@ -1,4 +1,4 @@
-function setupEyelink_Projector( edfName, win )
+function setupEyelink_Bore( edfName, win )
 % setupEyelink_Toon setups eyelink system for eye tracking with the 
 % projector.
 %
@@ -9,12 +9,11 @@ function setupEyelink_Projector( edfName, win )
 %
 % AR March 2019
 % AR April 2019 Updated distance to screen
-% AR June 2019 Adjusted shrinking factors, took out drift correction
-%	       because that can be done with DoTrackerSetup
+% AR June 2019 Adapted function for kidLoc experiment
 
 % Set scaling factor for shrinking screen resolution to fit on projector
-shrinkWidth = .4; % This fraction of the width will be taken off
-shrinkHeight = .4; % This fraction of the height will be taken off
+shrinkWidth = .3; % This fraction of the width will be taken off
+shrinkHeight = .3; % This fraction of the height will be taken off
 
 % Initialize eyelink and check to make sure Eyelink is online
 if EyelinkInit() ~= 1
@@ -37,9 +36,9 @@ end
 
 % Setting eyelink preferences and parameters
 Eyelink('command', 'add_file_preamble_text ''dynamic stim eyetracking''');
-Eyelink('command','screen_distance = 300'); % Distance from participant's 
-                                            % eye to projector screen 
-                                            % (measured 04/2019 by AR)
+Eyelink('command','screen_distance = 2620'); % Distance from participant's 
+                                             % eye to bore monitor
+                                             % (measured 04/2019 by AR)
 Eyelink('command', 'calibration_type = HV3'); % 3 point calibration, 
                                               % set in calibr.ini
 
@@ -87,7 +86,7 @@ Eyelink('command','validation_targets = %d,%d %d,%d %d,%d',...
         rect(1),rect(4), rect(3),rect(4), width*.5,rect(2));
 
 %% Calibrate
-fprintf('\n\nRun calibration, validation, and drift correction now. When done, hit "Output/Record"\n\n\n');
+fprintf('\n\nRun calibration, validation and drift correction now. When done, hit "Output/Record"\n\n\n');
 
 % Run calibration, validation and drift correction
 EyelinkDoTrackerSetup(el);
