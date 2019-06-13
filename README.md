@@ -27,6 +27,8 @@ Under the EyelinkSetup folder, you will find functions that can be used to setup
 
 - setupEyelink_Projector: Initializes, setups, and calibrates Eyelink for eye tracking subjects looking at stimuli displayed on the projector screen at the CNI. Run this code before you start any functional scan requiring eyetracking.
 
+- setupEyelink_Bore: Initializes, setups, and calibrates Eyelink for eye tracking subjects looking at stimuli displayed on the bore monitor at the CNI. Run this code before you start any functional scan requiring eyetracking.
+
 ## Plotting Eye Movements
 
 Under the PlottingEyeMovements folder, you will find functions that can be used to plot eye movements, especially for subjects asked to fixate on a central dot. The most important of these functions is eyetrackQA which is described in more detail below.
