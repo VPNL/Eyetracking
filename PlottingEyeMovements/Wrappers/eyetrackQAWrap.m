@@ -82,8 +82,8 @@ function eyetrackQAWrap( dataDir, varargin )
 %   screenshot = RAID('projects','GitHub','Eyetracking',...
 %                     'PlottingEyeMovements','ExperimentScreenShots',...
 %                     'kidLocWord.png');
-%   eyetrackQA( pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585], 
-%               'scrnDstnce', 2620, 'experiment_screenshot', screenshot );
+%   eyetrackQAWrap( pwd, 'pxlScrnDim', [1920 1080], 'mmScrnDim', [1040 585],... 
+%                   'scrnDstnce', 2620, 'experiment_screenshot', screenshot );
 %
 % -------------------------------------------------------------------------
 %
